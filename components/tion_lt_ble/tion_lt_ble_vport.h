@@ -7,7 +7,10 @@
 namespace esphome {
 namespace tion {
 
-using TionLtBleIO = esphome::tion::TionBleIO<dentra::tion::TionLtBleProtocol>;
+class TionLtBleIO : public esphome::tion::TionBleIO<dentra::tion::TionLtBleProtocol> {
+ public:
+  explicit TionLtBleIO() { this->set_ble_encryption(esp_ble_sec_act_t::ESP_BLE_SEC_ENCRYPT); }
+};
 
 class TionLtBleVPort : public TionVPortBLEComponent<TionLtBleIO> {
  public:
